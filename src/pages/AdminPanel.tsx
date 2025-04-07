@@ -1,24 +1,38 @@
-
 import { useState } from "react";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import { Upload, Plus, Package, AlertCircle, X, Check, ChevronDown, Settings, Database, ShoppingBag, Store, Users } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { 
+  Users, 
+  Package, 
+  Boxes, 
+  Settings, 
+  Search, 
+  Plus,
+  Check,
+  X,
+  Edit,
+  Trash,
+  Building,
+  CreditCard,
+  Bell
+} from "lucide-react";
 
 const AdminPanel = () => {
   const [activeFile, setActiveFile] = useState<string | null>(null);
@@ -419,8 +433,8 @@ const AdminPanel = () => {
                       className="h-4 w-4"
                     >
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="17 8 12 3 7 8" />
-                      <line x1="12" x2="12" y1="3" y2="15" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
                     </svg>
                     Bulk Update
                   </Button>

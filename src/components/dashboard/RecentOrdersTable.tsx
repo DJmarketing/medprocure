@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Eye, FileText } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Mock data for recent orders
 const recentOrders = [
