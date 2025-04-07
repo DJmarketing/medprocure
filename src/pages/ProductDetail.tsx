@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -28,7 +29,7 @@ import {
   Heart, 
   ShoppingCart, 
   Share, 
-  Print, 
+  Printer, 
   FileText, 
   Check, 
   ShieldCheck, 
@@ -219,7 +220,7 @@ const ProductDetail = () => {
                 <Share className="h-4 w-4" />
               </Button>
               <Button variant="outline" size="icon">
-                <Print className="h-4 w-4" />
+                <Printer className="h-4 w-4" />
               </Button>
             </div>
           </div>
