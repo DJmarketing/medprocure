@@ -121,12 +121,12 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Sidebar Trigger */}
-      <div className="fixed bottom-4 right-4 z-40 lg:hidden">
+      {/* Mobile Sidebar Trigger - Moved to top left */}
+      <div className="fixed top-4 left-4 z-40 lg:hidden">
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
           <SheetTrigger asChild>
-            <Button size="icon" className="h-12 w-12 rounded-full shadow-lg">
-              <Menu className="h-6 w-6" />
+            <Button size="icon" className="h-10 w-10 rounded-md shadow-md">
+              <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="p-0 w-[80%] sm:w-[300px]">
