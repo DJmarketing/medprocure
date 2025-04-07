@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Search, ShoppingCart, User, BellRing } from "lucide-react";
+import { Search, ShoppingCart, User, BellRing, Menu } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
@@ -31,7 +31,7 @@ const Navbar = () => {
             <span className="h-8 w-8 rounded-md bg-medical-primary flex items-center justify-center">
               <span className="text-white font-bold">MP</span>
             </span>
-            <span className="text-xl font-bold text-medical-dark hidden md:inline-block">
+            <span className="text-lg font-bold text-medical-dark hidden md:inline-block">
               MedProcure
             </span>
           </Link>
@@ -47,14 +47,33 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-1 md:gap-3">
-          <Button variant="ghost" size="icon" className="relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="relative sm:flex"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5 md:hidden" />
+          </Button>
+          
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="relative"
+            aria-label="Notifications"
+          >
             <BellRing className="h-5 w-5" />
             <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
               3
             </Badge>
           </Button>
           
-          <Button variant="ghost" size="icon" className="relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="relative"
+            aria-label="Cart"
+          >
             <ShoppingCart className="h-5 w-5" />
             <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
               2
@@ -71,28 +90,28 @@ const Navbar = () => {
                 <span className="hidden md:inline-block">{user.name}</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link to="/account" className="flex items-center gap-2 w-full">
+              <DropdownMenuItem asChild>
+                <Link to="/account" className="flex items-center gap-2 w-full cursor-pointer">
                   <User className="h-4 w-4" />
                   Profile
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/account/settings" className="flex items-center gap-2 w-full">
+              <DropdownMenuItem asChild>
+                <Link to="/account/settings" className="w-full cursor-pointer">
                   Settings
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/account/subscription" className="flex items-center gap-2 w-full">
+              <DropdownMenuItem asChild>
+                <Link to="/account/subscription" className="w-full cursor-pointer">
                   Subscription
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link to="/login" className="w-full">
+              <DropdownMenuItem asChild>
+                <Link to="/login" className="w-full cursor-pointer">
                   Log out
                 </Link>
               </DropdownMenuItem>
