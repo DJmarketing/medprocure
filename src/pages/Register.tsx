@@ -53,10 +53,10 @@ const Register = () => {
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-2">
             <span className="h-10 w-10 rounded-md bg-medical-primary flex items-center justify-center">
-              <span className="text-white font-bold">VM</span>
+              <span className="text-white font-bold">MP</span>
             </span>
             <span className="text-2xl font-bold text-medical-dark">
-              VitaMarket Connect
+              MedProcure
             </span>
           </div>
         </div>

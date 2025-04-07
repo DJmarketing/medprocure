@@ -29,10 +29,10 @@ const Navbar = () => {
         <div className="flex items-center gap-2 lg:gap-4">
           <Link to="/" className="flex items-center gap-2">
             <span className="h-8 w-8 rounded-md bg-medical-primary flex items-center justify-center">
-              <span className="text-white font-bold">VM</span>
+              <span className="text-white font-bold">MP</span>
             </span>
             <span className="text-xl font-bold text-medical-dark hidden md:inline-block">
-              VitaMarket Connect
+              MedProcure
             </span>
           </Link>
           

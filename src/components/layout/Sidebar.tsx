@@ -76,7 +76,7 @@ const Sidebar = () => {
 
         <div className="px-3 py-3 mt-auto">
           <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-            <p className="text-sm font-medium text-gray-800 mb-1">VitaMarket Pro</p>
+            <p className="text-sm font-medium text-gray-800 mb-1">MedProcure Pro</p>
             <p className="text-xs text-gray-500 mb-2">Your subscription is active</p>
             <div className="flex gap-2">
               <Link 

@@ -9,6 +9,10 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { 
   Table, 
   TableBody, 
@@ -31,8 +35,15 @@ import {
   Trash,
   Building,
   CreditCard,
-  Bell
+  Bell,
+  Upload,
+  Database,
+  AlertCircle,
+  ShoppingBag,
+  Store,
+  ChevronDown
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const AdminPanel = () => {
   const [activeFile, setActiveFile] = useState<string | null>(null);
@@ -1041,7 +1052,7 @@ const AdminPanel = () => {
                     >
                       <circle cx="12" cy="12" r="10" />
                       <path d="M12 16v-4" />
-                      <path d="M12 8h.01" />
+                      <path d="M12 3v3" />
                     </svg>
                     Help Center
                   </Button>
