@@ -11,13 +11,8 @@ import {
   Heart, 
   FileText,
   CreditCard,
-  HelpCircle,
-  Menu,
-  X
+  HelpCircle
 } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
 
 const navItems = [
   { path: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -32,114 +27,83 @@ const quickLinks = [
   { path: "/invoices", label: "Invoices", icon: FileText },
 ];
 
-const SidebarContent = () => {
+const Sidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
   return (
-    <div className="px-3 py-4 space-y-6 h-full flex flex-col">
-      <nav className="space-y-1">
-        <h2 className="text-xs font-semibold text-gray-500 px-3 mb-2">MAIN NAVIGATION</h2>
-        {navItems.map((item) => (
-          <Link 
-            key={item.path} 
-            to={item.path} 
-            className={cn(
-              "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors group",
-              pathname === item.path 
-                ? "bg-medical-light text-medical-primary" 
-                : "text-gray-600 hover:bg-gray-50"
-            )}
-          >
-            <item.icon className={cn(
-              "h-5 w-5 mr-2",
-              pathname === item.path 
-                ? "text-medical-primary" 
-                : "text-gray-400 group-hover:text-gray-600"
-            )} />
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-
-      <div>
-        <h2 className="text-xs font-semibold text-gray-500 px-3 mb-2">QUICK LINKS</h2>
+    <aside className="fixed left-0 top-16 bottom-0 w-64 border-r border-gray-200 bg-white z-20 overflow-y-auto hidden lg:block">
+      <div className="px-3 py-4 space-y-6">
         <nav className="space-y-1">
-          {quickLinks.map((item) => (
+          <h2 className="text-xs font-semibold text-gray-500 px-3 mb-2">MAIN NAVIGATION</h2>
+          {navItems.map((item) => (
             <Link 
               key={item.path} 
               to={item.path} 
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors group"
+              className={cn(
+                "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors group",
+                pathname === item.path 
+                  ? "bg-medical-light text-medical-primary" 
+                  : "text-gray-600 hover:bg-gray-50"
+              )}
             >
-              <item.icon className="h-5 w-5 mr-2 text-gray-400 group-hover:text-gray-600" />
+              <item.icon className={cn(
+                "h-5 w-5 mr-2",
+                pathname === item.path 
+                  ? "text-medical-primary" 
+                  : "text-gray-400 group-hover:text-gray-600"
+              )} />
               {item.label}
             </Link>
           ))}
         </nav>
-      </div>
 
-      <div className="px-3 py-3 mt-auto">
-        <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-          <p className="text-sm font-medium text-gray-800 mb-1">MedProcure Pro</p>
-          <p className="text-xs text-gray-500 mb-2">Your subscription is active</p>
-          <div className="flex gap-2">
-            <Link 
-              to="/account/subscription" 
-              className="text-xs bg-medical-primary text-white px-3 py-1 rounded-md"
-            >
-              Manage
+        <div>
+          <h2 className="text-xs font-semibold text-gray-500 px-3 mb-2">QUICK LINKS</h2>
+          <nav className="space-y-1">
+            {quickLinks.map((item) => (
+              <Link 
+                key={item.path} 
+                to={item.path} 
+                className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors group"
+              >
+                <item.icon className="h-5 w-5 mr-2 text-gray-400 group-hover:text-gray-600" />
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="px-3 py-3 mt-auto">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+            <p className="text-sm font-medium text-gray-800 mb-1">MedProcure Pro</p>
+            <p className="text-xs text-gray-500 mb-2">Your subscription is active</p>
+            <div className="flex gap-2">
+              <Link 
+                to="/account/subscription" 
+                className="text-xs bg-medical-primary text-white px-3 py-1 rounded-md"
+              >
+                Manage
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-3">
+          <div className="flex items-center gap-2 border-t pt-4 text-xs text-gray-500">
+            <Link to="/help" className="flex items-center gap-1 hover:text-medical-primary">
+              <HelpCircle className="h-4 w-4" />
+              Help
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link to="/settings" className="flex items-center gap-1 hover:text-medical-primary">
+              <Settings className="h-4 w-4" />
+              Settings
             </Link>
           </div>
         </div>
       </div>
-
-      <div className="px-3">
-        <div className="flex items-center gap-2 border-t pt-4 text-xs text-gray-500">
-          <Link to="/help" className="flex items-center gap-1 hover:text-medical-primary">
-            <HelpCircle className="h-4 w-4" />
-            Help
-          </Link>
-          <span className="text-gray-300">|</span>
-          <Link to="/settings" className="flex items-center gap-1 hover:text-medical-primary">
-            <Settings className="h-4 w-4" />
-            Settings
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Sidebar = () => {
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  
-  // Close sidebar when route changes (for mobile)
-  const location = useLocation();
-  useEffect(() => {
-    setIsMobileOpen(false);
-  }, [location]);
-
-  return (
-    <>
-      {/* Mobile Sidebar Trigger - Moved to top left */}
-      <div className="fixed top-4 left-4 z-40 lg:hidden">
-        <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
-          <SheetTrigger asChild>
-            <Button size="icon" className="h-10 w-10 rounded-md shadow-md">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 w-[80%] sm:w-[300px]">
-            <SidebarContent />
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* Desktop Sidebar */}
-      <aside className="fixed left-0 top-16 bottom-0 w-64 border-r border-gray-200 bg-white z-20 overflow-y-auto hidden lg:block">
-        <SidebarContent />
-      </aside>
-    </>
+    </aside>
   );
 };
 
