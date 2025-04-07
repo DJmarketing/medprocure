@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Medical theme colors
+				medical: {
+					primary: '#0891B2',
+					secondary: '#0E7490',
+					accent: '#06B6D4',
+					light: '#ECFEFF',
+					dark: '#164E63'
 				}
 			},
 			borderRadius: {
