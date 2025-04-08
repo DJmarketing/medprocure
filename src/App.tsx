@@ -16,6 +16,9 @@ import Subscription from "./pages/Subscription";
 import Settings from "./pages/Settings";
 import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
+import SavedItems from "./pages/SavedItems";
+import Wholesalers from "./pages/Wholesalers";
+import Invoices from "./pages/Invoices";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +40,9 @@ const App = () => (
             <Route path="subscription" element={<Subscription />} />
             <Route path="settings" element={<Settings />} />
             <Route path="admin" element={<AdminPanel />} />
+            <Route path="saved-items" element={<SavedItems />} />
+            <Route path="wholesalers" element={<Wholesalers />} />
+            <Route path="invoices" element={<Invoices />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

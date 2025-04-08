@@ -1,4 +1,3 @@
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { 
@@ -47,7 +46,6 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     setIsOpen(false);
   };
 
-  // Content of sidebar that's shared between desktop and mobile
   const SidebarContent = () => (
     <div className="px-3 py-4 space-y-6 h-full flex flex-col">
       <nav className="space-y-1">
@@ -83,9 +81,19 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
               key={item.path} 
               to={item.path} 
               onClick={() => setIsOpen(false)}
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors group"
+              className={cn(
+                "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors group",
+                pathname === item.path 
+                  ? "bg-medical-light text-medical-primary" 
+                  : "text-gray-600 hover:bg-gray-50"
+              )}
             >
-              <item.icon className="h-5 w-5 mr-2 text-gray-400 group-hover:text-gray-600" />
+              <item.icon className={cn(
+                "h-5 w-5 mr-2",
+                pathname === item.path 
+                  ? "text-medical-primary" 
+                  : "text-gray-400 group-hover:text-gray-600"
+              )} />
               {item.label}
             </Link>
           ))}
@@ -134,12 +142,10 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
   return (
     <>
-      {/* Desktop sidebar */}
       <aside className="fixed left-0 top-16 bottom-0 w-64 border-r border-gray-200 bg-white z-20 overflow-y-auto hidden lg:block">
         <SidebarContent />
       </aside>
 
-      {/* Mobile sidebar (using Sheet from shadcn/ui) */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="left" className="p-0 w-[280px] sm:w-[320px]">
           <div className="h-full flex flex-col">
