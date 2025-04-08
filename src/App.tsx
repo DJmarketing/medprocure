@@ -12,6 +12,8 @@ import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
+import Subscription from "./pages/Subscription";
+import Settings from "./pages/Settings";
 import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
 
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="products/:id" element={<ProductDetail />} />
             <Route path="orders" element={<Orders />} />
             <Route path="account" element={<Account />} />
+            <Route path="subscription" element={<Subscription />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="admin" element={<AdminPanel />} />
           </Route>
           <Route path="*" element={<NotFound />} />

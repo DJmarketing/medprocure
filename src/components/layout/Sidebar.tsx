@@ -22,6 +22,8 @@ const navItems = [
   { path: "/products", label: "Products", icon: Package },
   { path: "/orders", label: "Orders", icon: ShoppingBag },
   { path: "/account", label: "Account", icon: User },
+  { path: "/subscription", label: "Subscription", icon: CreditCard },
+  { path: "/settings", label: "Settings", icon: Settings },
 ];
 
 const quickLinks = [
@@ -96,7 +98,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <p className="text-xs text-gray-500 mb-2">Your subscription is active</p>
           <div className="flex gap-2">
             <Link 
-              to="/account/subscription" 
+              to="/subscription" 
               onClick={() => setIsOpen(false)}
               className="text-xs bg-medical-primary text-white px-3 py-1 rounded-md"
             >
