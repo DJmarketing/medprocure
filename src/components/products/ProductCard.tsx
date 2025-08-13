@@ -6,6 +6,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { cn } from "@/lib/utils";
 import { Product } from "@/types";
 import { ShoppingCart, Heart, Eye, BarChart2, Info } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +15,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, viewMode }: ProductCardProps) => {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+
   const getStockStatusColor = (stock: number) => {
     if (stock === 0) return "bg-red-100 text-red-800 hover:bg-red-200";
     if (stock < 10) return "bg-amber-100 text-amber-800 hover:bg-amber-200";
@@ -23,6 +28,16 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
     if (stock === 0) return "Out of Stock";
     if (stock < 10) return "Low Stock";
     return "In Stock";
+  };
+
+  const handleAddToCart = () => {
+    if (product.stock === 0) return;
+    
+    addToCart(product);
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    });
   };
 
   if (viewMode === "list") {
@@ -96,7 +111,7 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
               <Button variant="outline" size="icon">
                 <Heart className="h-4 w-4" />
               </Button>
-              <Button size="sm" disabled={product.stock === 0}>
+              <Button size="sm" disabled={product.stock === 0} onClick={handleAddToCart}>
                 <ShoppingCart className="h-4 w-4 mr-1" /> Add to Cart
               </Button>
             </div>
@@ -173,7 +188,7 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
                 <Eye className="h-4 w-4" />
               </Link>
             </Button>
-            <Button className="col-span-3" disabled={product.stock === 0}>
+            <Button className="col-span-3" disabled={product.stock === 0} onClick={handleAddToCart}>
               <ShoppingCart className="h-4 w-4 mr-1" /> Add to Cart
             </Button>
           </div>

@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, ShoppingCart, User, BellRing, Menu } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { CartSheet } from "@/components/cart/CartSheet";
 
 const Navbar = () => {
   // Mockup user info - would be replaced with context/state in real app
@@ -68,17 +69,7 @@ const Navbar = () => {
             </Badge>
           </Button>
           
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="relative"
-            aria-label="Cart"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
-              2
-            </Badge>
-          </Button>
+          <CartSheet />
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
