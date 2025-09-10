@@ -252,14 +252,14 @@ const BulkUploadComponent = ({ onImportComplete }: BulkUploadComponentProps) => 
                   value={mapping[field.key] || 'skip'}
                   onValueChange={(value) => setMapping(prev => ({ 
                     ...prev, 
-                    [field.key]: value === 'skip' ? undefined : value 
+                    [field.key]: value === 'skip' ? '' : value 
                   }))}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select column" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="skip">-- Skip --</SelectItem>
+                    <SelectItem value="skip">-- Skip This Field --</SelectItem>
                     {headers.map((header) => (
                       <SelectItem key={header} value={header}>
                         {header}
