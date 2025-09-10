@@ -353,9 +353,6 @@ const BulkUploadComponent = ({ onImportComplete }: BulkUploadComponentProps) => 
           <div className="text-center">
             <FileSpreadsheet className="h-16 w-16 text-green-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold">Successfully imported {data.length} products</h3>
-            <p className="text-muted-foreground">Products are now available in your catalog</p>
-          </div>
-        </div>
         
         <Button onClick={resetUpload} className="w-full">
           Import Another File
