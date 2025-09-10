@@ -44,9 +44,12 @@ import {
   ChevronDown
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import BulkUploadComponent from "@/components/admin/BulkUploadComponent";
 
 const AdminPanel = () => {
   const [activeFile, setActiveFile] = useState<string | null>(null);
+  const { toast } = useToast();
   
   return (
     <div className="space-y-6">
@@ -167,122 +170,12 @@ const AdminPanel = () => {
               </CardContent>
             </Card>
             
-            <Card>
-              <CardHeader>
-                <CardTitle>Bulk Product Upload</CardTitle>
-                <CardDescription>
-                  Update your product catalog in bulk
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-center">
-                  <Upload className="h-8 w-8 text-muted-foreground mb-2" />
-                  <h3 className="font-medium">Upload Catalog File</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Drag and drop or click to upload a CSV or Excel file
-                  </p>
-                  <Button className="gap-1">
-                    <Upload className="h-4 w-4" /> Choose File
-                  </Button>
-                </div>
-                
-                <Separator />
-                
-                <div className="space-y-2">
-                  <h3 className="font-medium">Active Uploads</h3>
-                  
-                  {activeFile ? (
-                    <div className="border rounded-lg p-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Package className="h-4 w-4 text-blue-600" />
-                          <div>
-                            <div className="font-medium text-sm">{activeFile}</div>
-                            <div className="text-xs text-muted-foreground">Uploading... 42%</div>
-                          </div>
-                        </div>
-                        <Button variant="ghost" size="icon" onClick={() => setActiveFile(null)}>
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-600 rounded-full" style={{ width: "42%" }}></div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-sm text-muted-foreground py-4 text-center">
-                      No active uploads
-                    </div>
-                  )}
-                </div>
-                
-                <div className="space-y-2">
-                  <h3 className="font-medium">Download Templates</h3>
-                  <div className="space-y-2">
-                    <Button variant="outline" className="w-full justify-start gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4"
-                      >
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <path d="M8 13h2" />
-                        <path d="M8 17h2" />
-                        <path d="M14 13h2" />
-                        <path d="M14 17h2" />
-                      </svg>
-                      Product Catalog Template (CSV)
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4"
-                      >
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <path d="M8 13h2" />
-                        <path d="M8 17h2" />
-                        <path d="M14 13h2" />
-                        <path d="M14 17h2" />
-                      </svg>
-                      Inventory Update Template (CSV)
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4"
-                      >
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <path d="M8 13h2" />
-                        <path d="M8 17h2" />
-                        <path d="M14 13h2" />
-                        <path d="M14 17h2" />
-                      </svg>
-                      Price List Template (Excel)
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <BulkUploadComponent onImportComplete={() => {
+              toast({
+                title: "Import successful",
+                description: "Products are now available in your catalog",
+              });
+            }} />
           </div>
           
           <Card>

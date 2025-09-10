@@ -24,7 +24,8 @@ import ProductCard from "@/components/products/ProductCard";
 import { cn } from "@/lib/utils";
 
 // Mock data
-import { products } from "@/data/mockProducts";
+import { products as mockProducts } from "@/data/mockProducts";
+import { Product } from "@/types";
 
 const ProductsPage = () => {
   const [view, setView] = useState<"grid" | "list">("grid");
@@ -33,6 +34,24 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSupplier, setSelectedSupplier] = useState("all");
   const [showInStock, setShowInStock] = useState(true);
+  const [useImported, setUseImported] = useState(true);
+
+  // Get products from localStorage or fallback to mock data
+  const getProducts = (): Product[] => {
+    if (useImported) {
+      const importedProducts = localStorage.getItem('importedProducts');
+      if (importedProducts) {
+        try {
+          return JSON.parse(importedProducts);
+        } catch (error) {
+          console.error('Error parsing imported products:', error);
+        }
+      }
+    }
+    return mockProducts;
+  };
+
+  const products = getProducts();
 
   const filteredProducts = products.filter(product => {
     // Filter by search query
@@ -226,7 +245,21 @@ const ProductsPage = () => {
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
                 {filteredProducts.length} products found
+                {localStorage.getItem('importedProducts') && (
+                  <Badge variant="secondary" className="ml-2">
+                    {useImported ? 'Imported Catalog' : 'Demo Data'}
+                  </Badge>
+                )}
               </p>
+              {localStorage.getItem('importedProducts') && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setUseImported(!useImported)}
+                >
+                  {useImported ? 'View Demo Data' : 'View Imported Catalog'}
+                </Button>
+              )}
             </div>
 
             <TabsContent value="all" className="m-0">

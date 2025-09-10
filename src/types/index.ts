@@ -15,6 +15,8 @@ export interface Product {
   availableFrom: number;
   brand: string;
   longDescription?: string;
+  uom?: string; // Unit of Measure (e.g., "Box", "Bottle", "Each")
+  uomQuantity?: number; // Quantity per UOM (e.g., 100 for "Box of 100")
 }
 
 export interface Order {

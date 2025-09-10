@@ -72,6 +72,12 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
           </div>
           
           <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{product.description}</p>
+          {product.uom && (
+            <div className="text-xs text-muted-foreground mb-2">
+              Unit: {product.uom}
+              {product.uomQuantity && ` of ${product.uomQuantity}`}
+            </div>
+          )}
           
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
             <div>
@@ -153,6 +159,12 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
         </h3>
         <p className="text-sm text-muted-foreground mb-1">{product.supplier}</p>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{product.description}</p>
+        {product.uom && (
+          <div className="text-xs text-muted-foreground mb-2">
+            Unit: {product.uom}
+            {product.uomQuantity && ` of ${product.uomQuantity}`}
+          </div>
+        )}
         
         <div className="mt-auto">
           <div className="flex items-center gap-2 mb-1">
