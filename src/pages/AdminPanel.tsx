@@ -46,10 +46,23 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import BulkUploadComponent from "@/components/admin/BulkUploadComponent";
+import { Product } from "@/types";
 
 const AdminPanel = () => {
   const [activeFile, setActiveFile] = useState<string | null>(null);
   const { toast } = useToast();
+  const [importedProducts, setImportedProducts] = useState<Product[]>([]);
+
+  const handleImportComplete = (products: Product[]) => {
+    setImportedProducts(products);
+    // Store in localStorage
+    try {
+      localStorage.setItem('importedProducts', JSON.stringify(products));
+    } catch (error) {
+      console.error('Failed to store products in localStorage:', error);
+      // Continue without localStorage if quota exceeded
+    }
+  };
   
   return (
     <div className="space-y-6">
@@ -170,12 +183,7 @@ const AdminPanel = () => {
               </CardContent>
             </Card>
             
-            <BulkUploadComponent onImportComplete={() => {
-              toast({
-                title: "Import successful",
-                description: "Products are now available in your catalog",
-              });
-            }} />
+            <BulkUploadComponent onImportComplete={handleImportComplete} />
           </div>
           
           <Card>
