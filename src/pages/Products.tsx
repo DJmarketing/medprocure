@@ -34,19 +34,27 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSupplier, setSelectedSupplier] = useState("all");
   const [showInStock, setShowInStock] = useState(true);
-  const [useImported, setUseImported] = useState(true);
+  const [useImported, setUseImported] = useState(false);
+  const [importedProducts, setImportedProducts] = useState<Product[]>([]);
+
+  // Check for imported products on component mount
+  useState(() => {
+    const stored = localStorage.getItem('importedProducts');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        setImportedProducts(parsed);
+        setUseImported(true);
+      } catch (error) {
+        console.error('Error parsing imported products:', error);
+      }
+    }
+  });
 
   // Get products from localStorage or fallback to mock data
   const getProducts = (): Product[] => {
-    if (useImported) {
-      const importedProducts = localStorage.getItem('importedProducts');
-      if (importedProducts) {
-        try {
-          return JSON.parse(importedProducts);
-        } catch (error) {
-          console.error('Error parsing imported products:', error);
-        }
-      }
+    if (useImported && importedProducts.length > 0) {
+      return importedProducts;
     }
     return mockProducts;
   };
@@ -245,13 +253,13 @@ const ProductsPage = () => {
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
                 {filteredProducts.length} products found
-                {localStorage.getItem('importedProducts') && (
+                {importedProducts.length > 0 && (
                   <Badge variant="secondary" className="ml-2">
                     {useImported ? 'Imported Catalog' : 'Demo Data'}
                   </Badge>
                 )}
               </p>
-              {localStorage.getItem('importedProducts') && (
+              {importedProducts.length > 0 && (
                 <Button 
                   variant="outline" 
                   size="sm"
