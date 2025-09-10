@@ -249,14 +249,17 @@ const BulkUploadComponent = ({ onImportComplete }: BulkUploadComponentProps) => 
                   {field.required && <Badge variant="destructive" className="text-xs">Required</Badge>}
                 </Label>
                 <Select
-                  value={mapping[field.key] || ''}
-                  onValueChange={(value) => setMapping(prev => ({ ...prev, [field.key]: value }))}
+                  value={mapping[field.key] || 'skip'}
+                  onValueChange={(value) => setMapping(prev => ({ 
+                    ...prev, 
+                    [field.key]: value === 'skip' ? undefined : value 
+                  }))}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select column" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">-- Skip --</SelectItem>
+                    <SelectItem value="skip">-- Skip --</SelectItem>
                     {headers.map((header) => (
                       <SelectItem key={header} value={header}>
                         {header}
